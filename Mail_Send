@@ -1,0 +1,70 @@
+
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Gmail_Main {
+	
+	static WebDriver driver;
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		
+		System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
+		
+		 driver=new ChromeDriver();
+		driver.get("https://login.yahoo.com/?.lang=en-IN&src=help&activity=ybar-signin&pspid=986299015&done=https%3A%2F%2Fin.help.yahoo.com%2Fkb%2Faccount&add=1");
+		
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		
+      driver.findElement(By.xpath("//input[@id='login-username']")).sendKeys("shivam.bhatnagar@yahoo.com");
+		
+		Thread.sleep(2000);
+		//next button
+		driver.findElement(By.xpath("//input[@id='login-signin']")).click();
+		
+		//password
+	 driver.findElement(By.xpath("//input[contains(@id , \"login-passwd\")]")).sendKeys("Mukesh@1964");
+		
+	 Thread.sleep(2000);	
+		//Next button
+      driver.findElement(By.xpath("//button[@value='Next']")).click();
+	
+		//driver.close();
+      
+      driver.findElement(By.xpath("//span[@class='ybar-icon-sprite _yb_1onhx _yb_uy6gb']")).click();
+	
+	driver.findElement(By.xpath("//a[contains(text(),'Compose')]")).click();
+	
+	
+	//To Area
+	WebElement Username = driver.findElement(By.xpath("//input[@id='message-to-field']"));
+	Username.sendKeys("shivamkumarbhatnagar@gmail.com");
+	Username.click();
+	Thread.sleep(5000);
+		//Subject
+	driver.findElement(By.xpath("//input[@class='q_T y_Z2hYGcu je_0 jb_0 X_0 N_fq7 G_e A_6EqO C_Z281SGl ir_0 P_0 bj3_Z281SGl b_0 j_n d_72FG em_N']")).sendKeys("Incubyte");;
+	Thread.sleep(3000);
+	
+	//TextArea
+	driver.findElement(By.xpath("//div[@class='rte em_N ir_0 iy_A iz_h N_6Fd5']")).click();
+	Thread.sleep(3000);
+	driver.findElement(By.xpath("//div[@class='rte em_N ir_0 iy_A iz_h N_6Fd5']")).sendKeys("Hello world");
+
+	
+	
+	
+	//Send Button
+	driver.findElement(By.xpath("//span[contains(text(),'Send')]")).click();
+	
+	System.out.println("Sucessfully sent");
+		}
+
+	}
+
+
